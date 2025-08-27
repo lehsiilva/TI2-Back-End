@@ -6,7 +6,7 @@ import java.util.List;
 import com.exemplo.model.Produto;
 
 public class ProdutoDAO {
-    private final String url = "jdbc:postgresql://localhost:5432/bd";
+    private final String url = "jdbc:postgresql://localhost:5432/bd"; 
     private final String user = "ti2cc";
     private final String password = "ti@cc";
 
