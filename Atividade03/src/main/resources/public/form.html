@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Cadastrar Produto</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #f4f6f8;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+    .container {
+        background: #fff;
+        padding: 40px;
+        border-radius: 12px;
+        box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+        width: 400px;
+        position: relative;
+    }
+    h2 {
+        text-align: center;
+        color: #0b7dda;
+        margin-bottom: 30px;
+    }
+    input[type="text"], input[type="number"] {
+        width: 100%;
+        padding: 12px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        font-size: 16px;
+    }
+    input[type="submit"] {
+        width: 100%;
+        padding: 12px;
+        background-color: #0b7dda;
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+    input[type="submit"]:hover {
+        background-color: #045a9c;
+    }
+    a {
+        display: block;
+        text-align: center;
+        margin-top: 20px;
+        text-decoration: none;
+        color: #0b7dda;
+        font-weight: bold;
+    }
+    a:hover { text-decoration: underline; }
+
+    #mensagem {
+        position: absolute;
+        top: -30px;
+        left: 50%;
+        transform: translateX(-50%);
+        color: green;
+        font-weight: bold;
+        display: none;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <h2>Cadastrar Produto</h2>
+    <p id="mensagem">Produto cadastrado com sucesso!</p>
+    <form id="formProduto">
+        <input type="text" name="nome" id="nome" placeholder="Nome do Produto" required>
+        <input type="number" step="0.01" name="preco" id="preco" placeholder="Preço do Produto" required>
+        <input type="submit" value="Salvar">
+    </form>
+    <a href="/listar.html">Ver Produtos</a>
+</div>
+
+<script>
+const form = document.getElementById("formProduto");
+const mensagem = document.getElementById("mensagem");
+
+form.addEventListener("submit", function(e){
+    e.preventDefault();
+    const formData = new URLSearchParams(new FormData(form));
+    fetch('/produto/inserir', { method: 'POST', body: formData })
+        .then(()=> {
+            form.reset();
+            mensagem.style.display = 'block';
+            setTimeout(() => { mensagem.style.display = 'none'; }, 3000);
+        });
+});
+</script>
+</body>
+</html>

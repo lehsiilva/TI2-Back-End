@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Lista de Produtos</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #f4f6f8;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+    }
+    .container {
+        background: #fff;
+        padding: 40px;
+        border-radius: 12px;
+        box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+        width: 500px;
+    }
+    h2 {
+        text-align: center;
+        color: #0b7dda;
+        margin-bottom: 25px;
+    }
+    ul {
+        list-style: none;
+        padding: 0;
+    }
+    li {
+        padding: 12px;
+        margin-bottom: 10px;
+        border-radius: 8px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #f9f9f9;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+    li:nth-child(even) { background-color: #e8f0fe; }
+    button {
+        padding: 6px 12px;
+        border: none;
+        border-radius: 6px;
+        background-color: #f44336;
+        color: white;
+        cursor: pointer;
+        font-weight: bold;
+        transition: 0.3s;
+    }
+    button:hover { background-color: #d32f2f; }
+    a {
+        display: block;
+        margin-top: 20px;
+        text-align: center;
+        text-decoration: none;
+        color: #0b7dda;
+        font-weight: bold;
+    }
+    a:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+<div class="container">
+    <h2>Produtos Cadastrados</h2>
+    <ul id="listaProdutos"></ul>
+    <a href="/form.html">Cadastrar Novo Produto</a>
+</div>
+
+<script>
+function carregarProdutos() {
+    fetch('/produtos')
+        .then(res => res.text())
+        .then(html => {
+            document.getElementById("listaProdutos").innerHTML = html;
+        });
+}
+
+function deletarProduto(id) {
+    fetch('/excluir/' + id)
+        .then(() => carregarProdutos());
+}
+
+carregarProdutos();
+</script>
+</body>
+</html>
