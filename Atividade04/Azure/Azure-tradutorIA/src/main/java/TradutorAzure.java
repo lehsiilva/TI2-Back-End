@@ -6,9 +6,9 @@ import java.util.Collections;
 
 public class TradutorAzure {
 
-    private static final String ENDPOINT = "";
-    private static final String KEY = "";
-    private static final String REGION = "";
+    private static final String ENDPOINT = "https://tradutorlivraria.cognitiveservices.azure.com/";
+    private static final String KEY = "8G06hE6eeoYykBSH6lmvdkF79Il49nbFPBisDG2on72f7HUqmxSKJQQJ99BJACHrzpqXJ3w3AAAbACOGQLBP";
+    private static final String REGION = "northcentralus";
 
     public static void main(String[] args) {
         System.out.println("--- Azure AI Translator ---");
